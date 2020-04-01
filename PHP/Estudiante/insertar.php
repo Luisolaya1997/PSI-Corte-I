@@ -1,6 +1,6 @@
 <?php
 
-include 'conexion.php';
+include '../conexion.php';
 $cod = $_POST['cod'];
 $nom = $_POST['nom'];
 $gen = $_POST['gen'];
@@ -11,10 +11,11 @@ $insersion = $con->query("insert into Estudiante(cod,nom,gen,dir,nam) values ('$
 
 
 if($insersion){
-	echo "Exito";
+	$msj = "Insersion Exitosa";
 }else{
-	echo "No se Inserto ".mysqli_error($con);
+	$msj = "No se Inserto ".mysqli_error($con);
 }
+header('Location: index.php?msj='.$msj);
 
 
 ?>

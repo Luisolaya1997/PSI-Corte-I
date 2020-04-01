@@ -43,45 +43,28 @@
 	}
 </style>
 <body>
-	<h1>Formulario de de actualización</h1>
-	<?php
-	$codigo = $_GET['cod'];
-	include 'conexion.php';
-	$datos = $con->query("select * from Estudiante where cod='$codigo'");
-
-	if($estudiante = $datos->fetch_assoc()){
-	?>
+	<h1>Formulario de insercion</h1>
 
 	<div>
 
-		<form action="actualizar.php" method="POST">
-			<input type="hidden" name="codOld" value="<?php echo $codigo; ?>">
+		<form action="insertar.php" method="POST">
 		  <label for="cod">Codigo</label><br>
-		  <input type="text" id="cod" name="cod" value="<?php echo $estudiante['cod']; ?>"><br>
+		  <input type="text" id="cod" name="cod" value=""><br>
 
 
 		  <label for="name">Nombre</label><br>
-		  <input type="text" id="name" name="nom" value="<?php echo $estudiante['nom']; ?>"><br>
+		  <input type="text" id="name" name="nom" value=""><br>
 
-		 <label for="gen">Genero</label><br>
-		  <input type="text" id="gen" name="gen" value="<?php echo $estudiante['gen']; ?>"><br>
-
-		  <label for="dir">direccion</label><br>
-		  <input type="text" id="dir" name="dir" value="<?php echo $estudiante['dir']; ?>"><br>
+		 <label for="tel">Telefono</label><br>
+		  <input type="text" id="tel" name="tel" value=""><br>
 
 		  <label for="fec">Fecha de Nacimiento</label><br>
-		  <input type="text" id="fec" name="fec" value="<?php echo $estudiante['nam']; ?>"><br>
+		  <input type="text" id="fec" name="fec" value=""><br>
 
 
 		  <input type="submit" value="Submit">
 		</form> 
 	</div>
-	<?php
-}
-else{
-	echo "<h3>el estudiante con codigo $codigo no existe</h3>";
-}
-	?>
 	<div>
 		<a href="index.php">Regresar</a>
 	</div>
