@@ -29,6 +29,8 @@
 	<div>
 		<a href="Estudiante/index.php">Estudiante</a>
 		<a href="Docente/index.php">Docente</a>
+		<a href="Materia/index.php">Materia</a>
+		<a href="MatxEst/index.php">MatxEst</a>
 	</div>
 </body>
 </html>
