@@ -41,15 +41,18 @@
 </style>
 <body>
 	<?php
-		
+		include '../../conexion.php';
+		$estudiante = $_GET['cod'];
+		$data = $con->query("select nom from Estudiante where cod='$estudiante'");
+		$estu = $data->fetch_assoc();
 		if(isset($_GET['msj'])){
 			$msj= $_GET['msj'];
 			echo "<script>alert('$msj');</script>";
 		}
 	?>
-	<h1>Listado de Estudiantes</h1>
+	<h1>Listado de Materias del estudiante <?php echo $estu['nom']; ?> </h1>
 	<div>
-		<a href="create.php">Crear </a>
+		<a href="create.php?cod=<?php echo $estudiante; ?>">Crear </a>
 	</div>
 
 	<div>
@@ -62,22 +65,22 @@
 					Nombre
 				</th>
 				<th>
-					Genero
+					Creditos
 				</th>
 				<th>
-					Dirección
+					bloque
 				</th>
 				<th>
-					Fecha de Nacimiento
+					Docente
 				</th>
 				<th>
 					Acciones
 				</th>
 			</tr>
 			<?php
-				include '../conexion.php';
+				
 
-				$datos = $con->query("select * from Estudiante");
+				$datos = $con->query("select * from Materia as mat, matxest as mxe where mat.cod=mxe.mat_cod and mxe.est_cod=$estudiante");
 
 				while($dato = $datos->fetch_assoc()){
 				?>
@@ -89,18 +92,17 @@
 							<?php echo $dato['nom']; ?>
 						</td>
 						<td>
-							<?php echo $dato['gen']; ?>
+							<?php echo $dato['numC']; ?>
 						</td>
 						<td>
-							<?php echo $dato['dir']; ?>
+							<?php echo $dato['blo']; ?>
 						</td>
 						<td>
-							<?php echo $dato['nam']; ?>
+							<?php echo $dato['Doc_cod']; ?>
 						</td>
 						<td>
 							<a href="edit.php?cod=<?php echo $dato['cod']; ?>">Editar</a>
-							<a href="eliminar.php?cod=<?php echo $dato['cod']; ?>">Eliminar</a>
-							<a href="materia/index.php?cod=<?php echo $dato['cod']; ?>">Materias</a>
+							<a href="eliminar.php?cod_est=<?php echo $estudiante; ?>&cod_mat=<?php echo $dato['cod']; ?>">Eliminar</a>
 						</td>
 					</tr>
 				<?php 
@@ -109,7 +111,7 @@
 		</table>
 	</div>
 	<div>
-		<a href="../index.php">Home</a>
+		<a href="../index.php">Estudiantes</a>
 	</div>
 </body>
 </html>
